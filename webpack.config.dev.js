@@ -1,4 +1,5 @@
 import path from 'path';
+import BrowserSync from 'browser-sync-webpack-plugin';
 
 export default {
   debug: true,
@@ -13,7 +14,13 @@ export default {
     publicPath: '/',
     filename: 'bundle.js'
   },
-  plugins: [],
+  plugins: [
+    new BrowserSync ({
+      host: 'localhost',
+      port: 3000,
+      proxy: 'http://localhost:3000'
+    })
+  ],
   module: {
     loaders: [
       {test: /\.js$/, exclude: /node_modules/, loaders: ['babel']},
